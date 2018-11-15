@@ -4,13 +4,8 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Hello World!</h1>
-    <p>{{ number }}</p>
-    <p>There are six dogs! <b> 
-        {%if number == 6%}
-            True
-        {% else %}
-            False
-        {% endif %}
-        </b></p>
+    {% for rocket in rockets %}
+    <h2>{{  rocket.name  }}</h2>
+    <p>{{  rocket.description  }}</p>
+    {% endfor %}
 {% endblock content %}

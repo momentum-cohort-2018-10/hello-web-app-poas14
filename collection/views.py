@@ -1,8 +1,8 @@
 from django.shortcuts import render
-
+from collection.models import Rocket
 # Create your views here.
 def index(request):
-    number = 5
+    rockets = Rocket.objects.all()
     return render(request, 'index.html', {
-        'number': number,
+        'rockets': rockets,
     })
