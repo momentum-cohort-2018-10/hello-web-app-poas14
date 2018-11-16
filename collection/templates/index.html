@@ -5,7 +5,9 @@
 
 {% block content %}
     {% for rocket in rockets %}
-    <h2>{{  rocket.name  }}</h2>
-    <p>{{  rocket.description  }}</p>
+        <h2><a href="{% url 'rocket_detail' slug=rocket.slug %}">
+            {{ rocket.name }}
+        </a></h2>
+        <p>{{ rocket.description }}</p>
     {% endfor %}
 {% endblock content %}
