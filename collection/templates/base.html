@@ -1,13 +1,14 @@
 {% load staticfiles %} 
 <!doctype html> 
 <html>
-<head>
+<head class="georgia">
     <title>
         {% block title %}
             My Hello Web App Project
         {% endblock title %}
     </title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/> 
         {% block header %}{% endblock header %}
     </head>
     <body>
@@ -18,6 +19,18 @@
                     <li><a href="{% url 'home' %}">Home</a></li> 
                     <li><a href="{% url 'about' %}">About</a></li> 
                     <li><a href="{% url 'contact' %}">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'auth_logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'auth_login' %}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'registration_register' %}">Register</a>
+                    </li>
+                    {% endif %}
                 </ul> 
             </nav>
         </header>              
