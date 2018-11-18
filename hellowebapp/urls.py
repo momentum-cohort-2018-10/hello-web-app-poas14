@@ -34,6 +34,7 @@ urlpatterns = [
     path('contact/',
         TemplateView.as_view(template_name='contact.html'),
         name='contact'),
+    path('accounts/create_rocket/', views.create_rocket, name='registration_create_rocket'),
     path('rockets/<slug>', views.rocket_detail,
         name='rocket_detail'),
     path('rockets/<slug>/edit/',
@@ -43,7 +44,7 @@ urlpatterns = [
     path('accounts/password/reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name="password_reset_confirm"),
     path('accounts/password/done/', PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name="password_reset_complete"),
     path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
-    path('accounts/create_rocket/', views.create_rocket, name='registration_create_rocket'),
+
 
     path('accounts/', include('registration.backends.simple.urls')),
     path('admin/', admin.site.urls),
