@@ -17,17 +17,13 @@ from django.urls import path, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 from collection import views
-# from django.contrib.auth.views import (
-#     password_reset,
-#     password_reset_done,
-#     password_reset_confirm,
-#     password_reset_complete,
-# )
+from collection.backends import MyRegistrationView
+
 from django.contrib.auth.views import (
-PasswordResetView,
-PasswordResetDoneView,
-PasswordResetConfirmView,
-PasswordResetCompleteView,
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView,
 )
 
 urlpatterns = [
@@ -46,6 +42,8 @@ urlpatterns = [
     path('accounts/password/reset/done/', PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name="password_reset_done"),
     path('accounts/password/reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name="password_reset_confirm"),
     path('accounts/password/done/', PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name="password_reset_complete"),
+    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
+    path('accounts/create_rocket/', views.create_rocket, name='registration_create_rocket'),
 
     path('accounts/', include('registration.backends.simple.urls')),
     path('admin/', admin.site.urls),

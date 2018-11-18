@@ -6,7 +6,11 @@
 {% block content %}
     <h2>{{  rocket.name  }}</h2>
     <p>{{  rocket.description  }}</p>
-    <a href="{% url 'edit_rocket' slug=rocket.slug %}">
-        Edit Me!
-    </a>
+    {% if user == rocket.user %}
+        <p>
+            <a href="{% url 'edit_rocket' slug=rocket.slug %}">
+                Edit Me!
+            </a>
+        </p>
+    {% endif %}
 {% endblock content %}
